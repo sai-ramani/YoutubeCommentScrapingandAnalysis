@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from googleapiclient.discovery import build
-import preprocessing_comments
+import preprocessing_comments, sentiment_analysis
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -46,10 +47,15 @@ def scrap_comments():
     f = open("youtubecomments.txt", 'w', encoding='utf-8')
     preprocessing_comments.store(comments,f)
 
+    #sentiment analysis on comments
+    result, positive_comments, negative_comments, neutral_comments = sentiment_analysis.analyze()
+
+
+
 
     after_complete_message = "Your file is ready and sent to your mail id"
 
-    return render_template('index.html',after_complete_message=after_complete_message,comments = comments)
+    return render_template('index.html',after_complete_message=after_complete_message,result = result,pcomments = positive_comments,ncomments=negative_comments, neucomments = neutral_comments)
 
 if __name__ == "__main__":
     app.run()
