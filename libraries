@@ -1,0 +1,2 @@
+pip install emoji==1.7
+pip install clean-text[gpl]==0.4.0
