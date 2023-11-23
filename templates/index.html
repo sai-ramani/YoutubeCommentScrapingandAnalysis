@@ -22,9 +22,8 @@
     <br>
     {% if after_complete_message %}
     <span class="res_mes">Result:</span>{{ result }}<br/>
-    <span class="res_mes">Positive Comments:</span>{{ pcomments }}<br/>
-    <span class="res_mes">Negative Comments:</span>{{ ncomments }}<br/>
-    <span class="res_mes">Neutral Comments:</span>{{ neucomments }}<br/>
+    <img src= "{{url_for('static', filename='/Image/bar_image.png')}}" >
+    <img src= "{{url_for('static', filename='/Image/pie_image.png')}}" >
     {% endif %}
     <br>
 </body>

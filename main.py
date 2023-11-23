@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from googleapiclient.discovery import build
-import preprocessing_comments, sentiment_analysis
+import preprocessing_comments, sentiment_analysis, plotting
 
 app = Flask(__name__)
 
@@ -50,8 +50,8 @@ def scrap_comments():
     #sentiment analysis on comments
     result, positive_comments, negative_comments, neutral_comments = sentiment_analysis.analyze()
 
-
-
+    #grpahical representation of frequencies
+    plotting.plot(positive_comments, negative_comments, neutral_comments)
 
     after_complete_message = "Your file is ready and sent to your mail id"
 
